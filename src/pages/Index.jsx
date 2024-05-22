@@ -1,5 +1,6 @@
 import React from "react";
-import { Container, VStack, HStack, Text, Box, Heading, Stat, StatLabel, StatNumber, StatHelpText, StatGroup, IconButton } from "@chakra-ui/react";
+import { Container, VStack, HStack, Text, Box, Heading, Stat, StatLabel, StatNumber, StatHelpText, StatGroup, IconButton, Input, FormControl, FormLabel } from "@chakra-ui/react";
+import { useState } from "react";
 import { FaChartBar, FaShieldAlt } from "react-icons/fa";
 
 const data = {
@@ -18,12 +19,29 @@ const data = {
 };
 
 const Index = () => {
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+
+  const handleStartDateChange = (e) => setStartDate(e.target.value);
+  const handleEndDateChange = (e) => setEndDate(e.target.value);
+
   return (
     <Container maxW="container.xl" p={4}>
       <VStack spacing={8} align="stretch">
         <Heading as="h1" size="xl" textAlign="center" mb={4}>
           Compliance Dashboard
         </Heading>
+
+        <HStack spacing={4} mb={4}>
+          <FormControl>
+            <FormLabel>Start Date</FormLabel>
+            <Input type="date" value={startDate} onChange={handleStartDateChange} />
+          </FormControl>
+          <FormControl>
+            <FormLabel>End Date</FormLabel>
+            <Input type="date" value={endDate} onChange={handleEndDateChange} />
+          </FormControl>
+        </HStack>
 
         <Box>
           <Heading as="h2" size="lg" mb={4}>
